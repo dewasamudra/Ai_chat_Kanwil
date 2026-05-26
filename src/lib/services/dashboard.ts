@@ -46,7 +46,7 @@ export const getChatbotResponse = async (query: string): Promise<ChatResponse> =
         });
       } else if (lowerQuery.includes("halo") || lowerQuery.includes("hai")) {
         resolve({
-          text: "Halo! Saya Bixby Kemenag Lampung, asisten AI Anda. Ada yang bisa saya bantu terkait layanan di Kantor Wilayah Kementerian Agama Provinsi Lampung hari ini?",
+          text: "Halo! Saya Bixby Kanwil Kemenag Provinsi Lampung, asisten AI Anda. Ada yang bisa saya bantu terkait layanan di Kantor Wilayah Kementerian Agama Provinsi Lampung hari ini?",
         });
       } else {
         resolve({

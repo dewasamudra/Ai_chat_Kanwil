@@ -16,7 +16,7 @@ export function BixbyChatManager() {
     {
       id: 1,
       role: 'assistant',
-      content: 'Assalamualaikum. Saya Asisten AI Digital Kemenag Lampung. Ada yang bisa saya bantu terkait informasi layanan publik, atau keagamaan hari ini?',
+      content: 'Assalamualaikum. Saya Asisten AI Digital Kanwil Kemenag Provinsi Lampung. Ada yang bisa saya bantu terkait informasi layanan publik, atau keagamaan hari ini?',
       timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
     }
   ]);
@@ -103,7 +103,7 @@ export function BixbyChatManager() {
       setMessages(prev => [...prev, {
         id: Date.now() + 1,
         role: 'assistant',
-        content: `Waalaikumsalam. Baik, sedang memproses data dari pusat informasi terpadu Kanwil Kemenag Lampung untuk informasi: ${textToSend}...`,
+        content: `Waalaikumsalam. Baik, sedang memproses data dari pusat informasi terpadu Kanwil Kemenag Provinsi Lampung untuk informasi: ${textToSend}...`,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }]);
     }, 2000);

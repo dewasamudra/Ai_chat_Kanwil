@@ -12,7 +12,7 @@ export default function Home() {
         <div className="flex flex-col gap-8">
           <section>
             <h1 className="text-3xl font-bold text-slate-900 dark:text-white mb-2 tracking-tight">Selamat Datang, Admin</h1>
-            <p className="text-slate-500 dark:text-slate-400 text-lg">Ringkasan aktivitas dan layanan publik Kanwil Kemenag Lampung hari ini.</p>
+            <p className="text-slate-500 dark:text-slate-400 text-lg">Ringkasan aktivitas dan layanan publik Kanwil Kemenag Provinsi Lampung hari ini.</p>
           </section>
           
           <StatCards />

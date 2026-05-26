@@ -26,7 +26,7 @@ export function BixbyPanel({ isOpen, onClose, orbState, setOrbState }: BixbyPane
     {
       id: "1",
       sender: "bot",
-      text: "Halo! Saya Bixby Kemenag Lampung. Ada yang bisa saya bantu hari ini?",
+      text: "Halo! Saya Bixby Kanwil Kemenag Provinsi Lampung. Ada yang bisa saya bantu hari ini?",
     },
   ]);
   const [inputValue, setInputValue] = useState("");

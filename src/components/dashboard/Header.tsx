@@ -16,7 +16,7 @@ export function Header() {
               <div className="w-4 h-4 bg-white rounded-sm"></div>
             </div>
             <span className="hidden md:inline-block font-bold text-lg tracking-tight text-slate-800 dark:text-slate-100">
-              Portal Dashboard Kanwil Kemenag Lampung
+              Portal Dashboard Kanwil Kemenag Provinsi Lampung
             </span>
           </div>
         </div>

@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Dashboard Kemenag Lampung",
+  title: "Dashboard Kanwil Kemenag Provinsi Lampung",
   description: "Portal Dashboard Kanwil Kemenag Provinsi Lampung terintegrasi dengan Asisten AI",
 };
 
