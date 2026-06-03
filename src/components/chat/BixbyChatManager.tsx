@@ -161,6 +161,7 @@ export function BixbyChatManager() {
         {/* --- AREA CHAT DENGAN BACKGROUND GEDUNG --- */}
         <div className="relative flex-1 overflow-hidden">
           {/* Background Image Gedung (Contoh: Kemenag Pusat) */}
+          
           <div
   className="absolute inset-0 z-0 opacity-100"
   style={{
