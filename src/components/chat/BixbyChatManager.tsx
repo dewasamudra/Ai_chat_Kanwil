@@ -73,7 +73,7 @@ export function BixbyChatManager() {
     recognition.start();
   };
 
-  const handleSend = (e?: React.FormEvent, customText?: string) => {
+  const handleSend = async (e?: React.FormEvent, customText?: string) => {
     if (e) e.preventDefault();
     
     const textToSend = customText || message;
@@ -90,15 +90,53 @@ export function BixbyChatManager() {
     setMessage(""); 
     setIsTyping(true);
 
-    setTimeout(() => {
-      setIsTyping(false);
+    try {
+      // --- SILAKAN GANTI URL DI BAWAH INI DENGAN URL API MILIK ANDA ---
+      const apiUrl = "https://api.domain-anda.com/endpoint-chatbot"; 
+      
+      const response = await fetch(apiUrl, {
+        method: "POST", 
+        headers: {
+          "Content-Type": "application/json",
+          // Jika API Anda butuh Bearer Token, hapus garis miring di bawah ini dan masukkan tokennya
+          // "Authorization": "Bearer TOKEN_ANDA_DISINI" 
+        },
+        body: JSON.stringify({ 
+          // Sesuaikan dengan format JSON yang diminta API Anda (misal: prompt, text, atau query)
+          message: textToSend 
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error("Gagal terhubung ke API");
+      }
+
+      const data = await response.json();
+      
+      // --- SESUAIKAN CARA MENGAMBIL BALASAN DARI RESPONSE API ANDA ---
+      // Contoh jika balasan API bentuknya: { "reply": "Halo ini balasan" } maka gunakan data.reply
+      const botReply = data.reply || data.message || data.jawaban || "Maaf, format balasan API tidak dikenali. Silakan cek console.";
+      
+      console.log("Response dari API:", data); // Untuk nge-cek balasan asli di inspect element browser
+
       setMessages(prev => [...prev, {
         id: Date.now() + 1,
         role: 'assistant',
-        content: `Waalaikumsalam. Baik, sedang memproses data dari pusat informasi terpadu Kanwil Kemenag Provinsi Lampung untuk informasi: ${textToSend}...`,
+        content: botReply,
         timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
       }]);
-    }, 2000);
+
+    } catch (error) {
+      console.error("Error memanggil API:", error);
+      setMessages(prev => [...prev, {
+        id: Date.now() + 1,
+        role: 'assistant',
+        content: "Mohon maaf, sistem sedang mengalami gangguan saat menghubungi server API. Silakan pastikan server API berjalan atau coba beberapa saat lagi.",
+        timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+      }]);
+    } finally {
+      setIsTyping(false);
+    }
   };
 
   // MENGAMBIL GAMBAR DARI FOLDER PUBLIC (PASTI BERHASIL)
@@ -160,19 +198,18 @@ export function BixbyChatManager() {
 
         {/* --- AREA CHAT DENGAN BACKGROUND GEDUNG --- */}
         <div className="relative flex-1 overflow-hidden">
-          {/* Background Image Gedung (Contoh: Kemenag Pusat) */}
-          
+          {/* Background Image Gedung */}
           <div
-  className="absolute inset-0 z-0 opacity-100"
-  style={{
-    backgroundImage: 'url("/bg.png")',
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
-/>
+            className="absolute inset-0 z-0 opacity-100"
+            style={{
+              backgroundImage: 'url("/bg.png")',
+              backgroundSize: 'cover',
+              backgroundPosition: 'center',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
 
-<div className="absolute inset-0 z-0 bg-white/10" />
+          <div className="absolute inset-0 z-0 bg-white/10" />
           {/* Overlay Putih/Gelap agar teks tetap sangat nyaman dibaca (Efek Kaca) */}
           <div className="absolute inset-0 z-0 bg-white/85 dark:bg-slate-950/85 backdrop-blur-[1px]" />
           
@@ -323,15 +360,14 @@ export function BixbyChatManager() {
           
           {/* Footer Logo Kemenag RI */}
           <div className="mt-4 flex items-center justify-center gap-2">
-  <img
-    src="/logo.png"
-    alt="Logo Kemenag"
-    className="h-5 w-5 object-contain opacity-80"
-  />
-  <p className="text-[10px] text-slate-400/80 font-medium uppercase tracking-wider">
-    KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI LAMPUNG
-  
-             </p>
+            <img
+              src="/logo.png"
+              alt="Logo Kemenag"
+              className="h-5 w-5 object-contain opacity-80"
+            />
+            <p className="text-[10px] text-slate-400/80 font-medium uppercase tracking-wider">
+              KANTOR WILAYAH KEMENTERIAN AGAMA PROVINSI LAMPUNG
+            </p>
           </div>
         </div>
       </div>
